@@ -4,8 +4,6 @@
    ========================================================================== */
 
 /* 1. Inyección de Fuentes Web */
-@import url('https://fonts.cdnfonts.com/css/akira-expanded');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Montserrat:wght@800;900&family=Syne:wght@700;800&display=swap');
 
 /* Fallback local para Akira Expanded */
 @font-face {
@@ -173,5 +171,20 @@ p, span, label, input, button, select, textarea, .font-sans {
 
 .animate-whatsapp-pulse {
   animation: whatsappPulse 3s infinite ease-in-out;
+}
+
+/* 6. Utilidades de Acordeón FAQs & Smooth Scroll */
+details summary::-webkit-details-marker,
+details summary::marker {
+  display: none;
+  content: "";
+}
+
+details[open] summary ~ * {
+  animation: fadeIn 0.22s ease-out;
+}
+
+.scroll-mt-header {
+  scroll-margin-top: 5.5rem;
 }
 

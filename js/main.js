@@ -516,7 +516,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (modifyBtn) {
     modifyBtn.addEventListener("click", () => {
-      goToStep(1);
+      goToStep(3); // Retrocede a la configuración tecnológica en lugar de reiniciar al paso 1
     });
   }
 
@@ -557,6 +557,20 @@ document.addEventListener("DOMContentLoaded", () => {
     card.addEventListener("click", () => {
       const covId = card.getAttribute("data-coverage-id");
       handleCoverageSelect(covId);
+    });
+  });
+
+  // Acordeón interactivo exclusivo para FAQs
+  const faqDetails = document.querySelectorAll("#faqs details");
+  faqDetails.forEach((detail) => {
+    detail.addEventListener("toggle", () => {
+      if (detail.open) {
+        faqDetails.forEach((otherDetail) => {
+          if (otherDetail !== detail && otherDetail.open) {
+            otherDetail.removeAttribute("open");
+          }
+        });
+      }
     });
   });
 
