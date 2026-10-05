@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precotizador Online | Polarizados Pol-Art Mendoza</title>
+  <meta name="description" content="Precotizador Automático de Polarizados Pol-Art Mendoza. Cotizá en 4 simples pasos láminas de control solar, PPF 3M Pro Series y láminas de seguridad.">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Favicon oficial Pol-Art -->
+  <link rel="icon" type="image/jpeg" href="./polart_onboarding/p-logo-blanco-sobre-negro-cuadrado.jpeg">
+
+  <!-- Tipografías: Akira Expanded (CDN) + Lato (Google Fonts) -->
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/akira-expanded">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Montserrat:wght@800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#000000',
+              charcoal: '#0D0D0D',
+              elevated: '#141414',
+              active: '#1A1A1A',
+              gray: '#414141',
+              'gray-light': '#8C8C8C',
+              white: '#FFFFFF',
+            },
+            whatsapp: {
+              DEFAULT: '#25D366',
+              hover: '#20BA5A',
+            },
+            rto: {
+              amber: '#F59E0B',
+              bg: '#1A1300',
+            },
+          },
+          fontFamily: {
+            display: ['"Akira Expanded"', 'Syne', 'Montserrat', '-apple-system', 'sans-serif'],
+            sans: ['Lato', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          boxShadow: {
+            'luxury-card': '0 4px 24px -4px rgba(0, 0, 0, 0.8)',
+            'luxury-active': '0 0 25px -2px rgba(255, 255, 255, 0.14)',
+            'whatsapp-glow': '0 0 30px -4px rgba(37, 211, 102, 0.4)',
+          },
+          borderRadius: {
+            card: '14px',
+            badge: '6px',
+            pill: '9999px',
+          },
+          letterSpacing: {
+            'display-tight': '0.05em',
+            'display-wide': '0.10em',
+            'display-widest': '0.15em',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Hoja de estilos personalizada: Variables CSS, Reset y Utilidades -->
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- Lógica de Interacción y Gestión de Estado (Sprint 2) -->
+  <script src="./js/main.js" defer></script>
+</head>
+
+<body class="bg-brand-black text-brand-white font-sans antialiased selection:bg-brand-white selection:text-brand-black min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+
+  <!-- Resplandor ambiental de iluminación técnica Dark Luxury -->
+  <div class="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(65,65,65,0.22),rgba(0,0,0,0))]"></div>
+
+  <!-- Barra Superior / Header Institucional Pol-Art -->
+  <header class="relative z-10 w-full border-b border-brand-gray/30 bg-brand-black/90 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      
+      <!-- Logotipo Oficial Pol-Art -->
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="relative w-10 h-10 rounded-md overflow-hidden border border-brand-gray/40 bg-brand-charcoal flex items-center justify-center group-hover:border-brand-gray transition-colors">
+          <img 
+            src="./polart_onboarding/p-logo-blanco-sobre-negro-cuadrado.jpeg" 
+            alt="Isotipo Pol-Art" 
+            class="w-full h-full object-cover"
+          >
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display text-sm tracking-widest text-brand-white group-hover:text-neutral-200 transition-colors">
+            POL-ART
+          </span>
+          <span class="text-[11px] font-sans text-brand-gray-light uppercase tracking-wider -mt-0.5">
+            Mendoza • Argentina
+          </span>
+        </div>
+      </a>
+
+      <!-- Badges de Certificación y Confianza -->
+      <div class="hidden sm:flex items-center gap-4">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-badge bg-brand-charcoal border border-brand-gray/40 text-[11px] font-sans tracking-wide text-brand-gray-light">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>Centro 3M Pro Series</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-badge bg-brand-charcoal border border-brand-gray/40 text-[11px] font-sans tracking-wide text-brand-gray-light">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-white"></span>
+          <span>Garantía Escrita</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Contenedor Principal de la Aplicación -->
+  <main class="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12">
+    <div class="w-full max-w-4xl mx-auto">
+      
+      <!-- Banner Contextual Superior -->
+      <div class="text-center mb-6 sm:mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-charcoal border border-brand-gray/40 text-[11px] uppercase tracking-widest text-brand-gray-light mb-3">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-brand-white"></span>
+          <span>Sistema de Precotización Oficial</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-display tracking-widest text-brand-white uppercase">
+          POLARIZADOS POL-ART
+        </h1>
+        <p class="text-xs sm:text-sm text-brand-gray-light max-w-md mx-auto mt-2 font-sans">
+          Cotizá la protección térmica y de seguridad de tu vehículo con tarifas transparentes y atención personalizada.
+        </p>
+      </div>
+
+      <!-- CARD PRINCIPAL DEL PRECOTIZADOR -->
+      <div id="precotizador-card" class="bg-brand-charcoal border border-brand-gray/40 rounded-card sm:rounded-[20px] shadow-luxury-card p-5 sm:p-8 md:p-10 relative overflow-hidden backdrop-blur-sm">
+        
+        <!-- HEADER DEL COTIZADOR: Logo / Título + Contador de Pasos + Barra de Progreso -->
+        <div class="pb-6 border-b border-brand-gray/30">
+          <div class="flex items-center justify-between gap-4">
+            
+            <!-- Marca y Subtítulo de Paso -->
+            <div class="flex items-center gap-2.5">
+              <span class="font-display text-xs sm:text-sm tracking-wider text-brand-white">
+                POL-ART PRECOTIZADOR
+              </span>
+              <span class="hidden sm:inline-block text-[11px] text-brand-gray-light/60">•</span>
+              <span class="hidden sm:inline-block text-[11px] font-sans text-brand-gray-light uppercase tracking-wider">
+                Configuración Rápida
+              </span>
+            </div>
+
+            <!-- Contador de Pasos y Botón Reiniciar -->
+            <div class="flex items-center gap-3">
+              <span id="step-counter-text" class="font-sans font-bold text-xs tracking-widest text-brand-gray-light uppercase bg-brand-black/60 px-2.5 py-1 rounded border border-brand-gray/30">
+                PASO 01 / 04
+              </span>
+              <button 
+                type="button" 
+                id="btn-restart" 
+                class="text-[11px] font-sans font-bold uppercase tracking-wider text-brand-gray-light hover:text-brand-white transition-colors flex items-center gap-1 cursor-pointer"
+                title="Reiniciar cotización al paso 1"
+              >
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                  <path d="M3 3v5h5"/>
+                </svg>
+                <span class="hidden sm:inline">Reiniciar</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Barra de Progreso Segmentada (4 Segmentos) -->
+          <div class="grid grid-cols-4 gap-2 mt-4" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso de la cotización">
+            <div id="prog-seg-1" class="h-[3px] bg-brand-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all duration-300"></div>
+            <div id="prog-seg-2" class="h-[3px] bg-brand-gray/30 rounded-full transition-all duration-300"></div>
+            <div id="prog-seg-3" class="h-[3px] bg-brand-gray/30 rounded-full transition-all duration-300"></div>
+            <div id="prog-seg-4" class="h-[3px] bg-brand-gray/30 rounded-full transition-all duration-300"></div>
+          </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- PASO 1: SELECCIÓN DE TIPO DE VEHÍCULO                         -->
+        <!-- ============================================================== -->
+        <section id="step-1" class="step-container pt-6 sm:pt-8" aria-labelledby="step-1-title">
+          
+          <div class="mb-6">
+            <h2 id="step-1-title" class="text-lg sm:text-xl md:text-2xl font-display tracking-wider text-brand-white uppercase">
+              SELECCIONÁ TU VEHÍCULO
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-gray-light mt-1.5 font-sans">
+              Definí el porte para calcular el material.
+            </p>
+          </div>
+
+          <!-- Grilla de Tarjetas de Vehículos (6 Opciones) -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-5" role="radiogroup" aria-label="Tipo de vehículo">
+
+            <!-- 1. Auto -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="true"
+              data-vehicle-id="auto"
+              class="vehicle-card relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-card bg-brand-active border border-brand-white shadow-luxury-active transition-all duration-200 cursor-pointer group text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="vehicle-check-badge absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div class="vehicle-icon-wrapper w-12 h-12 flex items-center justify-center text-brand-white transition-transform group-hover:scale-105">
+                <svg class="w-10 h-10 stroke-current stroke-[1.5]" viewBox="0 0 48 48" fill="none">
+                  <path d="M6 31V25C6 24.2 6.5 23.5 7.2 23.2L12 21.5L16.8 14.8C17.6 13.7 18.9 13 20.3 13H29.5C31.5 13 33.3 14.2 34 16.1L37.5 25.5L41.2 26.8C42.3 27.2 43 28.2 43 29.4V31" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14 22H34.5L31.5 16H20.5L16.5 22H14Z" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="25" y1="16" x2="25" y2="22" stroke-linecap="round"/>
+                  <path d="M6 31H10M20 31H28M38 31H43" stroke-linecap="round"/>
+                  <circle cx="15" cy="31" r="5" stroke-linecap="round"/>
+                  <circle cx="15" cy="31" r="1.5" fill="currentColor"/>
+                  <circle cx="33" cy="31" r="5" stroke-linecap="round"/>
+                  <circle cx="33" cy="31" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+              <span class="font-sans font-bold text-sm sm:text-base uppercase tracking-wider text-brand-white mt-3">
+                Auto
+              </span>
+              <span class="font-sans text-xs text-brand-gray-light mt-0.5">
+                Hatchback y sedán
+              </span>
+            </button>
+
+            <!-- 2. SUV -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-vehicle-id="suv"
+              class="vehicle-card relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="vehicle-check-badge hidden absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div class="vehicle-icon-wrapper w-12 h-12 flex items-center justify-center text-brand-gray-light group-hover:text-brand-white transition-all group-hover:scale-105">
+                <svg class="w-10 h-10 stroke-current stroke-[1.5]" viewBox="0 0 48 48" fill="none">
+                  <line x1="16" y1="10" x2="33" y2="10" stroke-linecap="round"/>
+                  <line x1="18" y1="10" x2="18" y2="12" stroke-linecap="round"/>
+                  <line x1="31" y1="10" x2="31" y2="12" stroke-linecap="round"/>
+                  <path d="M5 30V24C5 23 5.7 22.2 6.7 21.9L12 20.5L16.2 13.8C17 12.7 18.2 12 19.6 12H35C36.1 12 37.1 12.6 37.6 13.5L40 18L42.2 24.5C42.7 26 43 27 43 28.5V30" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14 20.5H36.5L34.5 15H19L15.5 20.5H14Z" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="26" y1="15" x2="26" y2="20.5" stroke-linecap="round"/>
+                  <path d="M5 30H9M19 30H29M39 30H43" stroke-linecap="round"/>
+                  <circle cx="14" cy="30" r="5" stroke-linecap="round"/>
+                  <circle cx="14" cy="30" r="1.5" fill="currentColor"/>
+                  <circle cx="34" cy="30" r="5" stroke-linecap="round"/>
+                  <circle cx="34" cy="30" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+              <span class="font-sans font-bold text-sm sm:text-base uppercase tracking-wider text-brand-white mt-3 group-hover:text-brand-white">
+                SUV
+              </span>
+              <span class="font-sans text-xs text-brand-gray-light mt-0.5 group-hover:text-neutral-300">
+                Monovolumen y cross
+              </span>
+            </button>
+
+            <!-- 3. Camioneta -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-vehicle-id="camioneta"
+              class="vehicle-card relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="vehicle-check-badge hidden absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div class="vehicle-icon-wrapper w-12 h-12 flex items-center justify-center text-brand-gray-light group-hover:text-brand-white transition-all group-hover:scale-105">
+                <svg class="w-10 h-10 stroke-current stroke-[1.5]" viewBox="0 0 48 48" fill="none">
+                  <path d="M4 23H17L21.5 13.5C22.2 12.6 23.3 12 24.5 12H34C35.1 12 36 12.7 36.5 13.7L39 19L43.2 24.8C43.7 25.5 44 26.3 44 27.2V30" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4 23V30" stroke-linecap="round"/>
+                  <path d="M4 30H8M18 30H29M39 30H44" stroke-linecap="round"/>
+                  <path d="M23 19.5H35L33 15H24.5L23 19.5Z" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="13" cy="30" r="5" stroke-linecap="round"/>
+                  <circle cx="13" cy="30" r="1.5" fill="currentColor"/>
+                  <circle cx="34" cy="30" r="5" stroke-linecap="round"/>
+                  <circle cx="34" cy="30" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+              <span class="font-sans font-bold text-sm sm:text-base uppercase tracking-wider text-brand-white mt-3 group-hover:text-brand-white">
+                Camioneta
+              </span>
+              <span class="font-sans text-xs text-brand-gray-light mt-0.5 group-hover:text-neutral-300">
+                Pick-up simple o doble
+              </span>
+            </button>
+
+            <!-- 4. Camión -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-vehicle-id="camion"
+              class="vehicle-card relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="vehicle-check-badge hidden absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div class="vehicle-icon-wrapper w-12 h-12 flex items-center justify-center text-brand-gray-light group-hover:text-brand-white transition-all group-hover:scale-105">
+                <svg class="w-10 h-10 stroke-current stroke-[1.5]" viewBox="0 0 48 48" fill="none">
+                  <rect x="4" y="11" width="22" height="19" rx="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M26 14H39C40.7 14 42 15.3 42 17V30" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M30 17H39.5L40 23H30V17Z" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4 30H8M18 30H27M37 30H42" stroke-linecap="round"/>
+                  <circle cx="13" cy="30" r="5" stroke-linecap="round"/>
+                  <circle cx="13" cy="30" r="1.5" fill="currentColor"/>
+                  <circle cx="32" cy="30" r="5" stroke-linecap="round"/>
+                  <circle cx="32" cy="30" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+              <span class="font-sans font-bold text-sm sm:text-base uppercase tracking-wider text-brand-white mt-3 group-hover:text-brand-white">
+                Camión
+              </span>
+              <span class="font-sans text-xs text-brand-gray-light mt-0.5 group-hover:text-neutral-300">
+                Cabina pesada y carga
+              </span>
+            </button>
+
+            <!-- 5. Maquinaria -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-vehicle-id="maquinaria"
+              class="vehicle-card relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="vehicle-check-badge hidden absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div class="vehicle-icon-wrapper w-12 h-12 flex items-center justify-center text-brand-gray-light group-hover:text-brand-white transition-all group-hover:scale-105">
+                <svg class="w-10 h-10 stroke-current stroke-[1.5]" viewBox="0 0 48 48" fill="none">
+                  <path d="M12 28V14C12 12.9 12.9 12 14 12H24C25.1 12 26 12.9 26 14V20H37V28" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="15" y="15" width="8" height="7" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="33" y1="12" x2="33" y2="20" stroke-linecap="round"/>
+                  <circle cx="14" cy="29" r="7" stroke-linecap="round"/>
+                  <circle cx="14" cy="29" r="2.5" fill="currentColor"/>
+                  <circle cx="35" cy="31" r="5" stroke-linecap="round"/>
+                  <circle cx="35" cy="31" r="1.5" fill="currentColor"/>
+                  <line x1="21" y1="30" x2="30" y2="30" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="font-sans font-bold text-sm sm:text-base uppercase tracking-wider text-brand-white mt-3 group-hover:text-brand-white">
+                Maquinaria
+              </span>
+              <span class="font-sans text-xs text-brand-gray-light mt-0.5 group-hover:text-neutral-300">
+                Línea vial y agrícola
+              </span>
+            </button>
+
+            <!-- 6. Otro -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-vehicle-id="otro"
+              class="vehicle-card relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="vehicle-check-badge hidden absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div class="vehicle-icon-wrapper w-12 h-12 flex items-center justify-center text-brand-gray-light group-hover:text-brand-white transition-all group-hover:scale-105">
+                <svg class="w-10 h-10 stroke-current stroke-[1.5]" viewBox="0 0 48 48" fill="none">
+                  <path d="M6 15H31L38 21.5L42 24.5C42.6 25 43 25.8 43 26.6V30" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 15V30" stroke-linecap="round"/>
+                  <path d="M30 18H37L40 24H30V18Z" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 30H10M20 30H29M39 30H43" stroke-linecap="round"/>
+                  <circle cx="15" cy="30" r="5" stroke-linecap="round"/>
+                  <circle cx="15" cy="30" r="1.5" fill="currentColor"/>
+                  <circle cx="34" cy="30" r="5" stroke-linecap="round"/>
+                  <circle cx="34" cy="30" r="1.5" fill="currentColor"/>
+                </svg>
+              </div>
+              <span class="font-sans font-bold text-sm sm:text-base uppercase tracking-wider text-brand-white mt-3 group-hover:text-brand-white">
+                Otro
+              </span>
+              <span class="font-sans text-xs text-brand-gray-light mt-0.5 group-hover:text-neutral-300">
+                Especiales y furgones
+              </span>
+            </button>
+
+          </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- PASO 2: SELECCIÓN DE SERVICIO PRINCIPAL                        -->
+        <!-- ============================================================== -->
+        <section id="step-2" class="step-container hidden pt-6 sm:pt-8" aria-labelledby="step-2-title">
+          
+          <div class="mb-6">
+            <h2 id="step-2-title" class="text-lg sm:text-xl md:text-2xl font-display tracking-wider text-brand-white uppercase">
+              ELEGÍ EL SERVICIO
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-gray-light mt-1.5 font-sans">
+              Elegí la protección técnica para tu unidad.
+            </p>
+          </div>
+
+          <!-- Grilla de Tarjetas de Servicio (5 Opciones) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4" role="radiogroup" aria-label="Servicio solicitado">
+
+            <!-- Servicio 1: Polarizado (Cotización Inmediata) -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="true"
+              data-service-id="polarizado"
+              class="service-card relative flex flex-col justify-between p-5 rounded-card bg-brand-active border border-brand-white shadow-luxury-active transition-all duration-200 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="service-check-badge absolute top-3.5 right-3.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider text-brand-white border border-brand-white/80 bg-brand-black/50 mb-3">
+                  COTIZACIÓN INMEDIATA
+                </span>
+                <h3 class="text-base sm:text-lg font-display tracking-wider text-brand-white uppercase">
+                  Polarizado
+                </h3>
+                <p class="text-xs text-brand-gray-light mt-1 font-sans">
+                  Control térmico y filtro UV.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-gray/30 flex items-center justify-between text-[11px] font-sans text-neutral-300">
+                <span>Precios en el paso siguiente</span>
+                <span class="text-brand-white">→</span>
+              </div>
+            </button>
+
+            <!-- Servicio 2: PPF 3M Pro Series -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-service-id="ppf"
+              class="service-card relative flex flex-col justify-between p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="service-check-badge hidden absolute top-3.5 right-3.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider text-brand-gray-light border border-brand-gray/50 bg-brand-black/40 mb-3">
+                  ASESORÍA A MEDIDA
+                </span>
+                <h3 class="text-base sm:text-lg font-display tracking-wider text-brand-white uppercase">
+                  PPF 3M Pro Series
+                </h3>
+                <p class="text-xs text-brand-gray-light mt-1 font-sans">
+                  Blindaje de pintura autorreparable.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-gray/30 flex items-center justify-between text-[11px] font-sans text-brand-gray-light group-hover:text-neutral-300">
+                <span>Cálculo según despiece</span>
+                <span>→</span>
+              </div>
+            </button>
+
+            <!-- Servicio 3: Antivandálico -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-service-id="antivandalico"
+              class="service-card relative flex flex-col justify-between p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="service-check-badge hidden absolute top-3.5 right-3.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider text-brand-gray-light border border-brand-gray/50 bg-brand-black/40 mb-3">
+                  ASESORÍA A MEDIDA
+                </span>
+                <h3 class="text-base sm:text-lg font-display tracking-wider text-brand-white uppercase">
+                  Antivandálico
+                </h3>
+                <p class="text-xs text-brand-gray-light mt-1 font-sans">
+                  Lámina de seguridad contra golpes.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-gray/30 flex items-center justify-between text-[11px] font-sans text-brand-gray-light group-hover:text-neutral-300">
+                <span>Espesores 4mil a 8mil</span>
+                <span>→</span>
+              </div>
+            </button>
+
+            <!-- Servicio 4: WPF Parabrisas -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-service-id="wpf"
+              class="service-card relative flex flex-col justify-between p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+            >
+              <span class="service-check-badge hidden absolute top-3.5 right-3.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider text-brand-gray-light border border-brand-gray/50 bg-brand-black/40 mb-3">
+                  ASESORÍA A MEDIDA
+                </span>
+                <h3 class="text-base sm:text-lg font-display tracking-wider text-brand-white uppercase">
+                  WPF Parabrisas
+                </h3>
+                <p class="text-xs text-brand-gray-light mt-1 font-sans">
+                  Escudo contra piedras en ruta.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-gray/30 flex items-center justify-between text-[11px] font-sans text-brand-gray-light group-hover:text-neutral-300">
+                <span>Protección de cristal exterior</span>
+                <span>→</span>
+              </div>
+            </button>
+
+            <!-- Servicio 5: Equipamiento LED -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-service-id="otros"
+              class="service-card relative flex flex-col justify-between p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white sm:col-span-2 lg:col-span-1"
+            >
+              <span class="service-check-badge hidden absolute top-3.5 right-3.5 w-5 h-5 rounded-full bg-brand-white text-brand-black flex items-center justify-center shadow-sm">
+                <svg class="w-3 h-3 stroke-current stroke-[2.5]" viewBox="0 0 24 24" fill="none">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider text-brand-gray-light border border-brand-gray/50 bg-brand-black/40 mb-3">
+                  ASESORÍA A MEDIDA
+                </span>
+                <h3 class="text-base sm:text-lg font-display tracking-wider text-brand-white uppercase">
+                  Equipamiento LED
+                </h3>
+                <p class="text-xs text-brand-gray-light mt-1 font-sans">
+                  Iluminación de alta potencia.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-gray/30 flex items-center justify-between text-[11px] font-sans text-brand-gray-light group-hover:text-neutral-300">
+                <span>Kits CANBUS y ópticas</span>
+                <span>→</span>
+              </div>
+            </button>
+
+          </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- PASO 3 (RAMA A): TONALIDAD Y TECNOLOGÍA (SI POLARIZADO)        -->
+        <!-- ============================================================== -->
+        <section id="step-3-polarizado" class="step-container hidden pt-6 sm:pt-8" aria-labelledby="step-3-pol-title">
+          
+          <div class="mb-6">
+            <h2 id="step-3-pol-title" class="text-lg sm:text-xl md:text-2xl font-display tracking-wider text-brand-white uppercase">
+              TONALIDAD Y TECNOLOGÍA
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-gray-light mt-1.5 font-sans">
+              Elegí privacidad y rechazo térmico.
+            </p>
+          </div>
+
+          <!-- SUB-PASO 3A: SELECTOR DE TONALIDAD -->
+          <div class="mb-8 p-4 sm:p-5 rounded-card bg-brand-black/60 border border-brand-gray/30">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-white">
+                1. Tonalidad del Cristal
+              </span>
+              <span class="text-[11px] font-sans text-brand-gray-light">
+                Graduación VLT
+              </span>
+            </div>
+
+            <!-- Botones de Tonalidad -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3" role="radiogroup" aria-label="Tonalidad del polarizado">
+              
+              <!-- Suave 50% -->
+              <button 
+                type="button" 
+                role="radio" 
+                aria-checked="false"
+                data-tonality-id="suave"
+                class="tonality-btn p-3.5 sm:p-4 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated text-left transition-all duration-200 cursor-pointer flex flex-col justify-between"
+              >
+                <div>
+                  <span class="font-sans font-bold text-sm text-brand-white block">Suave (50% VLT)</span>
+                  <span class="font-sans text-xs text-brand-gray-light mt-1 block">Máxima visión nocturna y filtro UV.</span>
+                </div>
+              </button>
+
+              <!-- Intermedio 20% (Default) -->
+              <button 
+                type="button" 
+                role="radio" 
+                aria-checked="true"
+                data-tonality-id="intermedio"
+                class="tonality-btn p-3.5 sm:p-4 rounded-card bg-brand-active border border-brand-white shadow-luxury-active text-left transition-all duration-200 cursor-pointer flex flex-col justify-between"
+              >
+                <div>
+                  <span class="font-sans font-bold text-sm text-brand-white block">Intermedio (20% VLT)</span>
+                  <span class="font-sans text-xs text-brand-gray-light mt-1 block">Equilibrio entre confort y visión.</span>
+                </div>
+              </button>
+
+              <!-- Presidencial 05% (Activa RTO) -->
+              <button 
+                type="button" 
+                role="radio" 
+                aria-checked="false"
+                data-tonality-id="presidencial"
+                class="tonality-btn p-3.5 sm:p-4 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated text-left transition-all duration-200 cursor-pointer flex flex-col justify-between"
+              >
+                <div>
+                  <span class="font-sans font-bold text-sm text-brand-white block">Presidencial (05% VLT)</span>
+                  <span class="font-sans text-xs text-brand-gray-light mt-1 block">Privacidad total desde afuera.</span>
+                </div>
+              </button>
+
+            </div>
+
+            <!-- Simulador Visual de Cristal Tintado -->
+            <div class="mt-4 pt-3 border-t border-brand-gray/20">
+              <div class="flex items-center justify-between text-[11px] font-sans text-brand-gray-light mb-1.5">
+                <span>Simulador óptico de privacidad:</span>
+                <span id="preview-vlt-label" class="font-bold text-brand-white">20% VLT</span>
+              </div>
+              <div id="tint-glass-preview" class="w-full h-12 rounded-md border border-brand-gray/40 relative overflow-hidden flex items-center justify-between px-4 transition-all duration-300 bg-black/75">
+                <span class="text-[11px] font-sans font-bold tracking-wider text-neutral-400 z-10">INTERIOR CABINA</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none"></div>
+                <span class="text-[11px] font-sans font-bold tracking-wider text-neutral-400 z-10">EXTERIOR</span>
+              </div>
+            </div>
+
+            <!-- Banner Condicional de Advertencia RTO Mendoza (Solo Presidencial) -->
+            <div id="rto-alert-box" class="hidden mt-4 p-4 rounded-md bg-[#1A1300] border border-[#F59E0B]/60 flex items-start gap-3 transition-all duration-300" role="alert">
+              <svg class="w-5 h-5 text-[#F59E0B] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              <div>
+                <p class="font-sans font-bold text-xs uppercase tracking-wider text-[#F59E0B]">
+                  Aviso Normativo RTO
+                </p>
+                <p class="font-sans text-xs text-neutral-300 mt-1 leading-relaxed">
+                  Tonalidad no homologada para la Revisión Técnica Obligatoria (RTO). Instalación a criterio del usuario.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SUB-PASO 3B: MATRIZ DE TECNOLOGÍAS & PRECIOS -->
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-white">
+                2. Tecnología de Lámina Solar
+              </span>
+              <span class="text-[11px] font-sans text-brand-gray-light">
+                Precios base estimados
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4" role="radiogroup" aria-label="Tecnología de polarizado">
+
+              <!-- 1. Glue ($90.500) -->
+              <div 
+                role="radio" 
+                aria-checked="false"
+                data-tech-id="glue"
+                class="tech-card relative p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider border border-brand-gray text-brand-gray-light">
+                    Económico
+                  </span>
+                  <div class="tech-radio-dot w-4 h-4 rounded-full border border-brand-gray/60 flex items-center justify-center"></div>
+                </div>
+                <h3 class="text-base font-display tracking-wider text-brand-white uppercase mt-2.5">
+                  Glue
+                </h3>
+                <div class="mt-1 flex items-baseline gap-1">
+                  <span class="text-xl sm:text-2xl font-bold font-sans text-brand-white tracking-tight">$90.500</span>
+                  <span class="text-[10px] uppercase font-sans text-brand-gray-light">estimado</span>
+                </div>
+                <ul class="mt-3 space-y-1 text-xs font-sans text-brand-gray-light border-t border-brand-gray/30 pt-2.5">
+                  <li class="flex items-start gap-1.5">• <span>Tinte incorporado en adhesivo con filtro UV.</span></li>
+                  <li class="flex items-start gap-1.5">• <span>Reduce el brillo solar a costo accesible.</span></li>
+                </ul>
+              </div>
+
+              <!-- 2. Dyed ($98.500) -->
+              <div 
+                role="radio" 
+                aria-checked="false"
+                data-tech-id="dyed"
+                class="tech-card relative p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider border border-brand-gray text-brand-white">
+                    Estándar
+                  </span>
+                  <div class="tech-radio-dot w-4 h-4 rounded-full border border-brand-gray/60 flex items-center justify-center"></div>
+                </div>
+                <h3 class="text-base font-display tracking-wider text-brand-white uppercase mt-2.5">
+                  Dyed
+                </h3>
+                <div class="mt-1 flex items-baseline gap-1">
+                  <span class="text-xl sm:text-2xl font-bold font-sans text-brand-white tracking-tight">$98.500</span>
+                  <span class="text-[10px] uppercase font-sans text-brand-gray-light">estimado</span>
+                </div>
+                <ul class="mt-3 space-y-1 text-xs font-sans text-brand-gray-light border-t border-brand-gray/30 pt-2.5">
+                  <li class="flex items-start gap-1.5">• <span>Poliéster teñido de mayor estabilidad óptica.</span></li>
+                  <li class="flex items-start gap-1.5">• <span>Tono parejo sin decoloración prematura.</span></li>
+                </ul>
+              </div>
+
+              <!-- 3. Dyed HP ($117.500) -->
+              <div 
+                role="radio" 
+                aria-checked="false"
+                data-tech-id="dyed-hp"
+                class="tech-card relative p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider bg-neutral-800 text-brand-white">
+                    Alto Rendimiento
+                  </span>
+                  <div class="tech-radio-dot w-4 h-4 rounded-full border border-brand-gray/60 flex items-center justify-center"></div>
+                </div>
+                <h3 class="text-base font-display tracking-wider text-brand-white uppercase mt-2.5">
+                  Dyed HP
+                </h3>
+                <div class="mt-1 flex items-baseline gap-1">
+                  <span class="text-xl sm:text-2xl font-bold font-sans text-brand-white tracking-tight">$117.500</span>
+                  <span class="text-[10px] uppercase font-sans text-brand-gray-light">estimado</span>
+                </div>
+                <ul class="mt-3 space-y-1 text-xs font-sans text-brand-gray-light border-t border-brand-gray/30 pt-2.5">
+                  <li class="flex items-start gap-1.5">• <span>Capa híbrida metalizada con mayor rechazo solar.</span></li>
+                  <li class="flex items-start gap-1.5">• <span>Disipa la radiación y protege el habitáculo.</span></li>
+                </ul>
+              </div>
+
+              <!-- 4. Nano Carbon ($127.500) -->
+              <div 
+                role="radio" 
+                aria-checked="false"
+                data-tech-id="nano-carbon"
+                class="tech-card relative p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider bg-neutral-800 text-brand-white">
+                    Larga Duración
+                  </span>
+                  <div class="tech-radio-dot w-4 h-4 rounded-full border border-brand-gray/60 flex items-center justify-center"></div>
+                </div>
+                <h3 class="text-base font-display tracking-wider text-brand-white uppercase mt-2.5">
+                  Nano Carbon
+                </h3>
+                <div class="mt-1 flex items-baseline gap-1">
+                  <span class="text-xl sm:text-2xl font-bold font-sans text-brand-white tracking-tight">$127.500</span>
+                  <span class="text-[10px] uppercase font-sans text-brand-gray-light">estimado</span>
+                </div>
+                <ul class="mt-3 space-y-1 text-xs font-sans text-brand-gray-light border-t border-brand-gray/30 pt-2.5">
+                  <li class="flex items-start gap-1.5">• <span>Partículas de carbón libre de metales.</span></li>
+                  <li class="flex items-start gap-1.5">• <span>Cero interferencia con celulares, GPS o TAG.</span></li>
+                </ul>
+              </div>
+
+              <!-- 5. Nano Cerámica PS ($154.500) - Default Selected -->
+              <div 
+                role="radio" 
+                aria-checked="true"
+                data-tech-id="nano-ceramic-ps"
+                class="tech-card relative p-5 rounded-card bg-brand-active border border-brand-white shadow-luxury-active transition-all duration-200 cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider border border-brand-white text-brand-white">
+                    Alta Gama
+                  </span>
+                  <div class="tech-radio-dot w-4 h-4 rounded-full border border-brand-white bg-brand-white flex items-center justify-center">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-black"></span>
+                  </div>
+                </div>
+                <h3 class="text-base font-display tracking-wider text-brand-white uppercase mt-2.5">
+                  Nano Cerámica PS
+                </h3>
+                <div class="mt-1 flex items-baseline gap-1">
+                  <span class="text-xl sm:text-2xl font-bold font-sans text-brand-white tracking-tight">$154.500</span>
+                  <span class="text-[10px] uppercase font-sans text-brand-gray-light">estimado</span>
+                </div>
+                <ul class="mt-3 space-y-1 text-xs font-sans text-neutral-300 border-t border-brand-gray/30 pt-2.5">
+                  <li class="flex items-start gap-1.5">• <span>Frena el calor infrarrojo sin oscurecer de más.</span></li>
+                  <li class="flex items-start gap-1.5">• <span>Visión cristalina hacia afuera de día y noche.</span></li>
+                </ul>
+              </div>
+
+              <!-- 6. Nano Cerámica Llumar ($225.500) -->
+              <div 
+                role="radio" 
+                aria-checked="false"
+                data-tech-id="nano-ceramic-llumar"
+                class="tech-card relative p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-white"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-sans font-bold uppercase tracking-wider bg-brand-white text-brand-black font-extrabold">
+                    Ultra Premium
+                  </span>
+                  <div class="tech-radio-dot w-4 h-4 rounded-full border border-brand-gray/60 flex items-center justify-center"></div>
+                </div>
+                <h3 class="text-base font-display tracking-wider text-brand-white uppercase mt-2.5">
+                  Nano Cerámica Llumar
+                </h3>
+                <div class="mt-1 flex items-baseline gap-1">
+                  <span class="text-xl sm:text-2xl font-bold font-sans text-brand-white tracking-tight">$225.500</span>
+                  <span class="text-[10px] uppercase font-sans text-brand-gray-light">estimado</span>
+                </div>
+                <ul class="mt-3 space-y-1 text-xs font-sans text-brand-gray-light border-t border-brand-gray/30 pt-2.5">
+                  <li class="flex items-start gap-1.5">• <span>Máxima disipación térmica del mercado mundial.</span></li>
+                  <li class="flex items-start gap-1.5">• <span>Bloqueo infrarrojo superior y máxima garantía.</span></li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- PASO 3 (RAMA B): ÁREA DE COBERTURA (PPF, ANTIVANDÁLICO, ETC.)   -->
+        <!-- ============================================================== -->
+        <section id="step-3-alternative" class="step-container hidden pt-6 sm:pt-8" aria-labelledby="step-3-alt-title">
+          
+          <div class="mb-6">
+            <h2 id="step-3-alt-title" class="text-lg sm:text-xl md:text-2xl font-display tracking-wider text-brand-white uppercase">
+              ÁREA DE COBERTURA
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-gray-light mt-1.5 font-sans">
+              Definí los sectores a proteger.
+            </p>
+          </div>
+
+          <!-- Grilla de Coberturas Técnicas -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4" role="radiogroup" aria-label="Cobertura requerida">
+            
+            <!-- Cobertura 1: Frente Completo -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="true"
+              data-coverage-id="frente"
+              class="coverage-card relative p-5 rounded-card bg-brand-active border border-brand-white shadow-luxury-active transition-all duration-200 cursor-pointer text-left"
+            >
+              <h4 class="font-display text-sm sm:text-base uppercase tracking-wider text-brand-white">
+                Frente Completo
+              </h4>
+              <p class="text-xs font-sans text-brand-gray-light mt-1.5">
+                Trompa, capot, paragolpes y ópticas.
+              </p>
+              <span class="inline-block mt-3 text-[11px] font-sans text-neutral-300 font-bold uppercase tracking-wider">
+                Zona de máxima exposición
+              </span>
+            </button>
+
+            <!-- Cobertura 2: Zonas de Impacto -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-coverage-id="impacto"
+              class="coverage-card relative p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-left"
+            >
+              <h4 class="font-display text-sm sm:text-base uppercase tracking-wider text-brand-white">
+                Zonas de Impacto
+              </h4>
+              <p class="text-xs font-sans text-brand-gray-light mt-1.5">
+                Paragolpes delantero y ópticas.
+              </p>
+              <span class="inline-block mt-3 text-[11px] font-sans text-brand-gray-light font-bold uppercase tracking-wider">
+                Protección focalizada
+              </span>
+            </button>
+
+            <!-- Cobertura 3: Laterales Completos -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-coverage-id="laterales"
+              class="coverage-card relative p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-left"
+            >
+              <h4 class="font-display text-sm sm:text-base uppercase tracking-wider text-brand-white">
+                Laterales Completos
+              </h4>
+              <p class="text-xs font-sans text-brand-gray-light mt-1.5">
+                Puertas y paneles laterales.
+              </p>
+              <span class="inline-block mt-3 text-[11px] font-sans text-brand-gray-light font-bold uppercase tracking-wider">
+                Protección anti-rayas y roces
+              </span>
+            </button>
+
+            <!-- Cobertura 4: Vehículo Total -->
+            <button 
+              type="button" 
+              role="radio" 
+              aria-checked="false"
+              data-coverage-id="total"
+              class="coverage-card relative p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-left"
+            >
+              <h4 class="font-display text-sm sm:text-base uppercase tracking-wider text-brand-white">
+                Vehículo Total
+              </h4>
+              <p class="text-xs font-sans text-brand-gray-light mt-1.5">
+                Protección integral de carrocería.
+              </p>
+              <span class="inline-block mt-3 text-[11px] font-sans text-brand-gray-light font-bold uppercase tracking-wider">
+                Blindaje total de pintura
+              </span>
+            </button>
+
+          </div>
+
+          <!-- Aviso de Cotización en Taller -->
+          <div class="mt-6 p-4 rounded-card bg-brand-black/60 border border-brand-gray/40 flex items-start gap-3">
+            <svg class="w-5 h-5 text-brand-white shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            <p class="font-sans text-xs text-neutral-300 leading-relaxed">
+              <strong class="text-brand-white uppercase tracking-wider">Presupuesto a medida:</strong> Presupuesto exacto según medidas y despiece en taller. Incluye asesoramiento con muestras reales de película 3M.
+            </p>
+          </div>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- PASO 4: RESUMEN DE COTIZACIÓN & CONVERSIÓN WHATSAPP            -->
+        <!-- ============================================================== -->
+        <section id="step-4" class="step-container hidden pt-6 sm:pt-8" aria-labelledby="step-4-title">
+          
+          <div class="mb-6">
+            <h2 id="step-4-title" class="text-lg sm:text-xl md:text-2xl font-display tracking-wider text-brand-white uppercase">
+              RESUMEN DE COTIZACIÓN
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-gray-light mt-1.5 font-sans">
+              Revisá tu configuración para agendar turno.
+            </p>
+          </div>
+
+          <!-- TICKET DARK LUXURY: ORDEN TÉCNICA ESTIMADA -->
+          <div class="ticket-container bg-brand-black/80 border border-brand-gray/60 rounded-card p-5 sm:p-7 shadow-luxury-card relative overflow-hidden">
+            
+            <!-- Resplandor superior técnico del ticket -->
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-white to-transparent opacity-80"></div>
+
+            <div class="flex items-center justify-between pb-4 border-b border-brand-gray/40">
+              <div>
+                <span class="font-display text-xs tracking-wider text-brand-white block uppercase">
+                  ORDEN TÉCNICA ESTIMADA
+                </span>
+                <span class="text-[11px] font-sans text-brand-gray-light">
+                  Polarizados Pol-Art Mendoza • Centro Certificado
+                </span>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-brand-charcoal border border-brand-gray/40 text-[10px] font-sans font-bold text-emerald-400 uppercase tracking-wider">
+                PRECOTIZADO
+              </span>
+            </div>
+
+            <!-- Filas de Detalles de Configuración -->
+            <div class="py-4 space-y-3.5 text-xs sm:text-sm font-sans">
+              
+              <div class="flex items-center justify-between">
+                <span class="text-brand-gray-light uppercase tracking-wider text-xs">VEHÍCULO</span>
+                <span id="summary-vehicle" class="font-bold text-brand-white tracking-wide">Auto</span>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span class="text-brand-gray-light uppercase tracking-wider text-xs">SERVICIO</span>
+                <span id="summary-service" class="font-bold text-brand-white tracking-wide">Polarizado</span>
+              </div>
+
+              <div id="summary-tonality-row" class="flex items-center justify-between">
+                <span class="text-brand-gray-light uppercase tracking-wider text-xs">TONALIDAD</span>
+                <span id="summary-tonality" class="font-bold text-brand-white tracking-wide">Intermedio (20% VLT)</span>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <span id="summary-tech-label" class="text-brand-gray-light uppercase tracking-wider text-xs">TECNOLOGÍA</span>
+                <span id="summary-tech" class="font-bold text-brand-white tracking-wide">Nano Cerámica PS</span>
+              </div>
+
+              <!-- Fila Destacada: Presupuesto Estimado -->
+              <div class="pt-4 border-t border-brand-gray/40 flex items-baseline justify-between">
+                <div>
+                  <span class="text-xs uppercase tracking-wider text-brand-gray-light block">PRESUPUESTO ESTIMADO</span>
+                  <span class="text-[11px] text-brand-gray-light/80 block mt-0.5">*Sujeto a validación en taller</span>
+                </div>
+                <span id="summary-price" class="text-2xl sm:text-3xl font-display font-bold text-brand-white tracking-tight">
+                  $154.500
+                </span>
+              </div>
+
+            </div>
+
+            <p id="summary-legal" class="mt-4 pt-3 border-t border-brand-gray/30 text-[11px] font-sans text-brand-gray-light leading-relaxed">
+              Valores para automóvil estándar. Garantía escrita emitida en taller.
+            </p>
+
+          </div>
+
+          <!-- BOTÓN PRINCIPAL DE CONVERSIÓN: WHATSAPP CTA -->
+          <div class="mt-6 sm:mt-8 space-y-3">
+            <a 
+              href="#" 
+              id="whatsapp-cta-btn" 
+              class="w-full py-4 px-6 rounded-md bg-[#25D366] hover:bg-[#20BA5A] text-black font-sans font-bold uppercase tracking-wider text-sm sm:text-base flex items-center justify-center gap-3 shadow-[0_0_30px_-4px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-[1.01] animate-whatsapp-pulse cursor-pointer"
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <!-- Ícono Vectorial Oficial WhatsApp -->
+              <svg class="w-6 h-6 fill-current shrink-0" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              <span>COTIZAR POR WHATSAPP</span>
+            </a>
+
+            <!-- Botón secundario para ajustar la configuración -->
+            <div class="text-center pt-2">
+              <button 
+                type="button" 
+                id="btn-modify-ticket" 
+                class="text-xs font-sans text-brand-gray-light hover:text-brand-white underline underline-offset-4 cursor-pointer transition-colors"
+              >
+                ← Modificar selección anterior
+              </button>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- FOOTER DE NAVEGACIÓN DEL PRECOTIZADOR                          -->
+        <!-- ============================================================== -->
+        <footer id="nav-footer-container" class="mt-8 sm:mt-10 pt-6 border-t border-brand-gray/30 flex items-center justify-between gap-4">
+          
+          <!-- Botón "Anterior" -->
+          <button 
+            type="button" 
+            id="btn-prev-step"
+            disabled
+            class="inline-flex items-center gap-2 text-brand-gray-light/40 text-xs sm:text-sm font-sans font-bold uppercase tracking-wider px-3 sm:px-4 py-2.5 rounded-md cursor-not-allowed select-none transition-colors"
+            title="Estás en el primer paso"
+          >
+            <svg class="w-4 h-4 stroke-current stroke-2" viewBox="0 0 24 24" fill="none">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>Anterior</span>
+          </button>
+
+          <!-- Microtexto Informativo Central -->
+          <span class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-sans text-brand-gray-light tracking-wide">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-gray"></span>
+            <span>Atención oficial en taller Mendoza</span>
+          </span>
+
+          <!-- Botón "Siguiente" -->
+          <button 
+            type="button" 
+            id="btn-next-step"
+            class="inline-flex items-center gap-2 bg-brand-white text-brand-black hover:bg-neutral-200 text-xs sm:text-sm font-sans font-bold uppercase tracking-wider px-6 sm:px-8 py-3 rounded-md transition-all duration-200 shadow-sm hover:shadow-md hover:scale-[1.01] cursor-pointer"
+          >
+            <span>Siguiente</span>
+            <svg class="w-4 h-4 stroke-current stroke-2" viewBox="0 0 24 24" fill="none">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+        </footer>
+
+      </div>
+
+      <!-- Credenciales y Seguridad al Pie del Precotizador -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-[11px] font-sans text-brand-gray-light uppercase tracking-wider">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-brand-white stroke-current stroke-2" viewBox="0 0 24 24" fill="none">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Garantía Escrita Oficial</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-brand-white stroke-current stroke-2" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span>Turnos en el Día</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-brand-white stroke-current stroke-2" viewBox="0 0 24 24" fill="none">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Taller en Mendoza</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer Institucional de la Web -->
+  <footer class="relative z-10 w-full border-t border-brand-gray/30 bg-brand-black py-6">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <p class="text-xs text-brand-gray-light font-sans">
+        © 2026 <span class="text-brand-white font-bold">Polarizados Pol-Art Mendoza</span>. Todos los derechos reservados.
+      </p>
+      <div class="flex items-center gap-4 text-xs text-brand-gray-light">
+        <span>Desarrollado por <strong class="text-brand-white font-sans">WAFLERS</strong></span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

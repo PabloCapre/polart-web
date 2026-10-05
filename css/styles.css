@@ -1,0 +1,177 @@
+/* ==========================================================================
+   POLARIZADOS POL-ART MENDOZA — SISTEMA DE DISEÑO (DARK LUXURY)
+   Sprint 1: Variables de Color CSS, Reset Tipográfico & Layout Base
+   ========================================================================== */
+
+/* 1. Inyección de Fuentes Web */
+@import url('https://fonts.cdnfonts.com/css/akira-expanded');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Montserrat:wght@800;900&family=Syne:wght@700;800&display=swap');
+
+/* Fallback local para Akira Expanded */
+@font-face {
+  font-family: 'Akira Expanded';
+  src: local('Akira Expanded'), local('AkiraExpanded-SuperBold');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. Variables CSS Nativas (:root) */
+:root {
+  /* Paleta Cromática Base Oficial */
+  --color-brand-black: #000000;
+  --color-brand-charcoal: #0D0D0D;
+  --color-brand-elevated: #141414;
+  --color-brand-active: #1A1A1A;
+  --color-brand-gray: #414141;
+  --color-brand-gray-light: #8C8C8C;
+  --color-brand-white: #FFFFFF;
+
+  /* Colores Funcionales / Conversión / Alertas */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #20BA5A;
+  --color-rto-amber: #F59E0B;
+  --color-rto-amber-bg: #1A1300;
+
+  /* Bordes & Superficies */
+  --border-subtle: 1px solid rgba(65, 65, 65, 0.4);
+  --border-default: 1px solid #414141;
+  --border-focus: 1px solid #FFFFFF;
+  --border-active: 1px solid rgba(255, 255, 255, 0.9);
+
+  /* Sombras Dark Luxury */
+  --shadow-card: 0 4px 24px -4px rgba(0, 0, 0, 0.8);
+  --shadow-active: 0 0 25px -2px rgba(255, 255, 255, 0.14);
+  --shadow-whatsapp: 0 0 30px -4px rgba(37, 211, 102, 0.4);
+
+  /* Radios de Esquinas */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-card: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Tipografías */
+  --font-display: 'Akira Expanded', 'Syne', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 3. Reset Global y Normalización */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--color-brand-black);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-brand-black);
+  color: var(--color-brand-white);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* 4. Reset Tipográfico Estricto */
+/* Títulos: Siempre Akira Expanded en MAYÚSCULAS con tracking positivo */
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  line-height: 1.15;
+  color: var(--color-brand-white);
+  margin: 0;
+}
+
+/* Párrafos y textos generales: Lato */
+p, span, label, input, button, select, textarea, .font-sans {
+  font-family: var(--font-sans);
+}
+
+/* 5. Clases Auxiliares de Componentes Dark Luxury */
+.bg-brand-black { background-color: var(--color-brand-black); }
+.bg-brand-charcoal { background-color: var(--color-brand-charcoal); }
+.bg-brand-elevated { background-color: var(--color-brand-elevated); }
+.bg-brand-active { background-color: var(--color-brand-active); }
+.bg-brand-white { background-color: var(--color-brand-white); }
+
+.text-brand-white { color: var(--color-brand-white); }
+.text-brand-gray-light { color: var(--color-brand-gray-light); }
+.text-brand-gray { color: var(--color-brand-gray); }
+.text-brand-black { color: var(--color-brand-black); }
+
+.border-brand-gray { border-color: var(--color-brand-gray); }
+.border-brand-white { border-color: var(--color-brand-white); }
+
+/* Sombras especializadas */
+.shadow-luxury-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-luxury-active {
+  box-shadow: var(--shadow-active);
+}
+
+/* Estado activo para tarjetas */
+.is-active-card {
+  background-color: var(--color-brand-active) !important;
+  border-color: var(--color-brand-white) !important;
+  box-shadow: var(--shadow-active) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-brand-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-gray);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-gray-light);
+}
+
+/* Transiciones entre pasos */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-step-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pulso para CTA de WhatsApp */
+@keyframes whatsappPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(37, 211, 102, 0.65);
+  }
+}
+
+.animate-whatsapp-pulse {
+  animation: whatsappPulse 3s infinite ease-in-out;
+}
+
