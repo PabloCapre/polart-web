@@ -1,7 +1,7 @@
 /**
  * ==========================================================================
- * POLARIZADOS POL-ART MENDOZA — PRECOTIZADOR AUTOMÁTICO (v3.0)
- * Sprint 2: Lógica de Interacción y Gestión de Estado Central (Vanilla JS)
+ * POLARIZADOS POL-ART MENDOZA — PRECOTIZADOR AUTOMÁTICO (v3.1)
+ * Sprint 3: Lógica de Interacción, Gestión de Estado Central y WhatsApp Directo
  * WAFLERS Frontend Engineering
  * ==========================================================================
  */
@@ -22,35 +22,35 @@ const PRECOTIZADOR_DATA = {
       id: "polarizado",
       name: "Polarizado",
       description: "Control térmico y filtro UV.",
-      badge: "COTIZACIÓN INMEDIATA",
+      badge: "COTIZACION INMEDIATA",
       isInstantQuote: true
     },
     {
       id: "ppf",
       name: "PPF 3M Pro Series",
       description: "Blindaje de pintura autorreparable.",
-      badge: "ASESORÍA A MEDIDA",
+      badge: "ASESORIA A MEDIDA",
       isInstantQuote: false
     },
     {
       id: "antivandalico",
       name: "Antivandálico",
       description: "Lámina de seguridad contra golpes.",
-      badge: "ASESORÍA A MEDIDA",
+      badge: "ASESORIA A MEDIDA",
       isInstantQuote: false
     },
     {
       id: "wpf",
       name: "WPF Parabrisas",
       description: "Escudo contra piedras en ruta.",
-      badge: "ASESORÍA A MEDIDA",
+      badge: "ASESORIA A MEDIDA",
       isInstantQuote: false
     },
     {
       id: "otros",
       name: "Equipamiento LED",
       description: "Iluminación de alta potencia.",
-      badge: "ASESORÍA A MEDIDA",
+      badge: "ASESORIA A MEDIDA",
       isInstantQuote: false
     }
   ],
@@ -58,16 +58,16 @@ const PRECOTIZADOR_DATA = {
   tonalities: [
     {
       id: "suave",
-      name: "Suave (50% VLT)",
-      vlt: "50%",
+      name: "Suave (35% VLT)",
+      vlt: "35%",
       description: "Máxima visión nocturna y filtro UV.",
       isRtoRestricted: false,
       opacityClass: "bg-black/40"
     },
     {
       id: "intermedio",
-      name: "Intermedio (20% VLT)",
-      vlt: "20%",
+      name: "Intermedio (15% VLT)",
+      vlt: "15%",
       description: "Equilibrio entre confort y visión.",
       isRtoRestricted: false,
       opacityClass: "bg-black/75"
@@ -164,8 +164,10 @@ const state = {
   currentStep: 1,
   totalSteps: 4,
   vehicleType: PRECOTIZADOR_DATA.vehicles[0], // Auto por defecto
+  vehicleDetails: "",                         // Marca, modelo y año (obligatorio)
+  clientName: "",                             // Nombre del cliente (obligatorio)
   service: PRECOTIZADOR_DATA.services[0],      // Polarizado por defecto
-  tonality: PRECOTIZADOR_DATA.tonalities[1],   // Intermedio (20% VLT) por defecto
+  tonality: PRECOTIZADOR_DATA.tonalities[1],   // Intermedio (15% VLT) por defecto
   technology: PRECOTIZADOR_DATA.technologies[4], // Nano Cerámica PS por defecto
   coverage: PRECOTIZADOR_DATA.coverages[0],    // Frente Completo por defecto
   isPresidencial: false
@@ -174,23 +176,35 @@ const state = {
 // 3. GENERADOR DE ENLACE DE WHATSAPP (dev-brief.md)
 function buildWhatsAppLink(selection) {
   const phone = "5492615190186";
+  const vehicleStr = selection.vehicleDetails 
+    ? `${selection.vehicle} (${selection.vehicleDetails})` 
+    : selection.vehicle;
+  const clientNameStr = selection.clientName ? selection.clientName.trim() : "";
+
   let message = "";
 
   if (selection.service === "Polarizado") {
     message = `¡Hola Pol-Art Mendoza! 👋 Vengo desde el cotizador web y quiero reservar mi turno:\n\n` +
-      `🚗 Vehículo: ${selection.vehicle}\n` +
+      `🚗 Vehículo: ${vehicleStr}\n` +
       `🛠️ Servicio: Polarizado\n` +
       `🕶️ Tonalidad: ${selection.tonality || "No especificada"}${selection.isPresidencial ? " (Aviso: Tono Presidencial)" : ""}\n` +
       `🔬 Tecnología: ${selection.technology || "No especificada"}\n` +
       `💰 Presupuesto estimado web: ${selection.price || "A confirmar"}\n\n` +
-      `¿Tienen turnos disponibles para esta semana? Mi nombre es: `;
+      `¿Tienen turnos disponibles para esta semana? Mi nombre es: ${clientNameStr}`;
+  } else if (selection.service === "Equipamiento LED") {
+    message = `¡Hola Pol-Art Mendoza! 👋 Armé mi consulta desde el cotizador web:\n\n` +
+      `🚗 Vehículo: ${vehicleStr}\n` +
+      `🛠️ Servicio: Equipamiento LED\n` +
+      `💡 Consulta: Instalación y asesoría de kits LED\n` +
+      `💰 Presupuesto: A cotizar según modelo en taller\n\n` +
+      `¿Podrían indicarme disponibilidad y presupuesto para mi modelo? Mi nombre es: ${clientNameStr}`;
   } else {
     message = `¡Hola Pol-Art Mendoza! 👋 Armé mi consulta desde el cotizador web:\n\n` +
-      `🚗 Vehículo: ${selection.vehicle}\n` +
+      `🚗 Vehículo: ${vehicleStr}\n` +
       `🛠️ Servicio: ${selection.service}\n` +
       `🎯 Cobertura: ${selection.technology || "A coordinar"}\n` +
       `💰 Presupuesto: A cotizar según modelo en taller\n\n` +
-      `¿Podrían indicarme disponibilidad y presupuesto para mi modelo? Mi nombre es: `;
+      `¿Podrían indicarme disponibilidad y presupuesto para mi modelo? Mi nombre es: ${clientNameStr}`;
   }
 
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
@@ -219,10 +233,12 @@ function goToStep(stepNumber) {
     // Ramificación condicional del Paso 3
     if (state.service.id === "polarizado") {
       currentTargetEl = document.getElementById("step-3-polarizado");
-      document.getElementById("step-3-alternative").classList.add("hidden");
+      const altSection = document.getElementById("step-3-alternative");
+      if (altSection) altSection.classList.add("hidden");
     } else {
       currentTargetEl = document.getElementById("step-3-alternative");
-      document.getElementById("step-3-polarizado").classList.add("hidden");
+      const polSection = document.getElementById("step-3-polarizado");
+      if (polSection) polSection.classList.add("hidden");
     }
   } else if (stepNumber === 4) {
     currentTargetEl = document.getElementById("step-4");
@@ -240,11 +256,7 @@ function goToStep(stepNumber) {
   updateProgressBar();
   updateNavigationButtons();
 
-  // Scroll suave al contenedor principal en pantallas móviles si es necesario
-  const cardElement = document.getElementById("precotizador-card");
-  if (cardElement && window.scrollY > cardElement.offsetTop) {
-    cardElement.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  // NOTA: Se eliminó el scrollIntoView para mantener la posición exacta de lectura sin saltos de pantalla
 }
 
 // Actualización visual de los 4 segmentos de progreso
@@ -270,7 +282,6 @@ function updateProgressBar() {
 function updateNavigationButtons() {
   const prevBtn = document.getElementById("btn-prev-step");
   const nextBtn = document.getElementById("btn-next-step");
-  const navContainer = document.getElementById("nav-footer-container");
 
   if (prevBtn) {
     if (state.currentStep === 1) {
@@ -284,7 +295,7 @@ function updateNavigationButtons() {
 
   if (nextBtn) {
     if (state.currentStep === 4) {
-      // En el paso 4 el CTA principal es WhatsApp; ocultamos el botón siguiente o lo cambiamos a "Reiniciar"
+      // En el paso 4 el CTA principal es WhatsApp; ocultamos el botón siguiente
       nextBtn.classList.add("hidden");
     } else {
       nextBtn.classList.remove("hidden");
@@ -324,6 +335,8 @@ function handleVehicleSelect(vehicleId) {
       if (icon) icon.className = "vehicle-icon-wrapper w-12 h-12 flex items-center justify-center text-brand-gray-light group-hover:text-brand-white transition-all group-hover:scale-105";
     }
   });
+
+  updateWhatsAppCta();
 }
 
 function handleServiceSelect(serviceId) {
@@ -346,6 +359,8 @@ function handleServiceSelect(serviceId) {
       if (checkBadge) checkBadge.classList.add("hidden");
     }
   });
+
+  updateWhatsAppCta();
 }
 
 function handleTonalitySelect(tonalityId) {
@@ -384,6 +399,8 @@ function handleTonalitySelect(tonalityId) {
     const vltLabel = document.getElementById("preview-vlt-label");
     if (vltLabel) vltLabel.textContent = tonality.vlt + " VLT";
   }
+
+  updateWhatsAppCta();
 }
 
 function handleTechnologySelect(techId) {
@@ -412,6 +429,8 @@ function handleTechnologySelect(techId) {
       }
     }
   });
+
+  updateWhatsAppCta();
 }
 
 function handleCoverageSelect(coverageId) {
@@ -430,11 +449,39 @@ function handleCoverageSelect(coverageId) {
       card.className = "coverage-card relative p-5 rounded-card bg-brand-charcoal border border-brand-gray/40 hover:border-brand-gray hover:bg-brand-elevated hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-left";
     }
   });
+
+  updateWhatsAppCta();
 }
 
-// 6. RENDERIZADO DEL RESUMEN TÉCNICO Y DISPATCH WHATSAPP (Paso 4)
+// 6. ACTUALIZACIÓN DINÁMICA DEL ENLACE DE WHATSAPP
+function updateWhatsAppCta() {
+  const whatsappCtaBtn = document.getElementById("whatsapp-cta-btn");
+  if (!whatsappCtaBtn) return;
+
+  const isPolarizado = state.service.id === "polarizado";
+  const isOtros = state.service.id === "otros";
+
+  const waPayload = {
+    vehicle: state.vehicleType.name,
+    vehicleDetails: state.vehicleDetails,
+    clientName: state.clientName,
+    service: state.service.name,
+    tonality: isPolarizado ? state.tonality.name : undefined,
+    technology: isPolarizado 
+      ? state.technology.name 
+      : (isOtros ? "Kits LED / Iluminación" : state.coverage.name),
+    price: isPolarizado ? state.technology.formattedPrice : undefined,
+    isPresidencial: isPolarizado ? state.isPresidencial : undefined
+  };
+
+  const waLink = buildWhatsAppLink(waPayload);
+  whatsappCtaBtn.setAttribute("href", waLink);
+}
+
+// 7. RENDERIZADO DEL RESUMEN TÉCNICO (Paso 4)
 function renderSummaryTicket() {
   const isPolarizado = state.service.id === "polarizado";
+  const isOtros = state.service.id === "otros";
 
   // Inyección de textos de la Orden Técnica
   const vehicleEl = document.getElementById("summary-vehicle");
@@ -446,7 +493,11 @@ function renderSummaryTicket() {
   const priceEl = document.getElementById("summary-price");
   const legalEl = document.getElementById("summary-legal");
 
-  if (vehicleEl) vehicleEl.textContent = state.vehicleType.name;
+  if (vehicleEl) {
+    vehicleEl.textContent = state.vehicleDetails 
+      ? `${state.vehicleType.name} (${state.vehicleDetails})` 
+      : state.vehicleType.name;
+  }
   if (serviceEl) serviceEl.textContent = state.service.name;
 
   if (isPolarizado) {
@@ -460,8 +511,17 @@ function renderSummaryTicket() {
     if (legalEl) {
       legalEl.textContent = "Valores para automóvil estándar. Garantía escrita emitida en taller.";
     }
+  } else if (isOtros) {
+    // Equipamiento LED
+    if (tonalityRow) tonalityRow.classList.add("hidden");
+    if (techLabelEl) techLabelEl.textContent = "EQUIPAMIENTO";
+    if (techEl) techEl.textContent = "Kits LED / Iluminación";
+    if (priceEl) priceEl.textContent = "A cotizar en taller";
+    if (legalEl) {
+      legalEl.textContent = "Presupuesto exacto según modelo de lámpara y óptica. Garantía oficial en taller.";
+    }
   } else {
-    // Servicios alternativos (PPF, Antivandálico, WPF, Otros)
+    // Servicios alternativos (PPF, Antivandálico, WPF)
     if (tonalityRow) tonalityRow.classList.add("hidden");
     if (techLabelEl) techLabelEl.textContent = "COBERTURA";
     if (techEl) techEl.textContent = state.coverage.name;
@@ -471,52 +531,139 @@ function renderSummaryTicket() {
     }
   }
 
-  // Generación y vinculación de enlace de WhatsApp
-  const whatsappCtaBtn = document.getElementById("whatsapp-cta-btn");
-  if (whatsappCtaBtn) {
-    const waPayload = {
-      vehicle: state.vehicleType.name,
-      service: state.service.name,
-      tonality: isPolarizado ? state.tonality.name : undefined,
-      technology: isPolarizado ? state.technology.name : state.coverage.name,
-      price: isPolarizado ? state.technology.formattedPrice : undefined,
-      isPresidencial: isPolarizado ? state.isPresidencial : undefined
-    };
-
-    const waLink = buildWhatsAppLink(waPayload);
-    whatsappCtaBtn.setAttribute("href", waLink);
-  }
+  updateWhatsAppCta();
 }
 
-// 7. INICIALIZACIÓN DE EVENT LISTENERS
+// 8. INICIALIZACIÓN DE EVENT LISTENERS
 document.addEventListener("DOMContentLoaded", () => {
-  // Navegación de botones
   const prevBtn = document.getElementById("btn-prev-step");
   const nextBtn = document.getElementById("btn-next-step");
   const restartBtn = document.getElementById("btn-restart");
   const modifyBtn = document.getElementById("btn-modify-ticket");
+  const vehicleInput = document.getElementById("vehicle-details-input");
+  const vehicleError = document.getElementById("vehicle-details-error");
+  const clientNameInput = document.getElementById("client-name-input");
+  const clientNameError = document.getElementById("client-name-error");
+  const whatsappCtaBtn = document.getElementById("whatsapp-cta-btn");
 
+  // Navegación de botón "Anterior"
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
-      goToStep(state.currentStep - 1);
+      if (state.currentStep === 4 && state.service.id === "otros") {
+        goToStep(2); // Equipamiento LED salta directo al Paso 2
+      } else {
+        goToStep(state.currentStep - 1);
+      }
     });
   }
 
+  // Navegación de botón "Siguiente" con validación de inputs
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      goToStep(state.currentStep + 1);
+      if (state.currentStep === 1) {
+        const val = vehicleInput ? vehicleInput.value.trim() : "";
+        if (!val) {
+          if (vehicleError) vehicleError.classList.remove("hidden");
+          if (vehicleInput) {
+            vehicleInput.classList.add("border-amber-500", "focus:border-amber-400");
+            vehicleInput.focus();
+          }
+          return;
+        }
+        state.vehicleDetails = val;
+        if (vehicleError) vehicleError.classList.add("hidden");
+        if (vehicleInput) {
+          vehicleInput.classList.remove("border-amber-500", "focus:border-amber-400");
+        }
+        goToStep(2);
+      } else if (state.currentStep === 2) {
+        if (state.service.id === "otros") {
+          goToStep(4); // Equipamiento LED salta directo al Paso 4
+        } else {
+          goToStep(3);
+        }
+      } else if (state.currentStep === 3) {
+        goToStep(4);
+      }
     });
   }
 
+  // Botón Reiniciar
   if (restartBtn) {
     restartBtn.addEventListener("click", () => {
+      if (vehicleInput) {
+        vehicleInput.value = "";
+        vehicleInput.classList.remove("border-amber-500", "focus:border-amber-400");
+      }
+      if (vehicleError) vehicleError.classList.add("hidden");
+      state.vehicleDetails = "";
+
+      if (clientNameInput) {
+        clientNameInput.value = "";
+        clientNameInput.classList.remove("border-amber-500", "focus:border-amber-400");
+      }
+      if (clientNameError) clientNameError.classList.add("hidden");
+      state.clientName = "";
+
       goToStep(1);
     });
   }
 
+  // Botón Modificar Selección del Ticket
   if (modifyBtn) {
     modifyBtn.addEventListener("click", () => {
-      goToStep(3); // Retrocede a la configuración tecnológica en lugar de reiniciar al paso 1
+      if (state.service.id === "otros") {
+        goToStep(2); // Para Equipamiento LED vuelve al Paso 2
+      } else {
+        goToStep(3); // Para Polarizado y Coberturas vuelve al Paso 3
+      }
+    });
+  }
+
+  // Validación y despacho de WhatsApp CTA en Paso 4
+  if (whatsappCtaBtn) {
+    whatsappCtaBtn.addEventListener("click", (e) => {
+      const nameVal = clientNameInput ? clientNameInput.value.trim() : "";
+      if (!nameVal) {
+        e.preventDefault();
+        if (clientNameError) clientNameError.classList.remove("hidden");
+        if (clientNameInput) {
+          clientNameInput.classList.add("border-amber-500", "focus:border-amber-400");
+          clientNameInput.focus();
+        }
+        return;
+      }
+
+      state.clientName = nameVal;
+      if (clientNameError) clientNameError.classList.add("hidden");
+      if (clientNameInput) {
+        clientNameInput.classList.remove("border-amber-500", "focus:border-amber-400");
+      }
+
+      updateWhatsAppCta();
+    });
+  }
+
+  // Escuchar inputs en tiempo real
+  if (vehicleInput) {
+    vehicleInput.addEventListener("input", () => {
+      state.vehicleDetails = vehicleInput.value.trim();
+      if (state.vehicleDetails && vehicleError) {
+        vehicleError.classList.add("hidden");
+        vehicleInput.classList.remove("border-amber-500", "focus:border-amber-400");
+      }
+      updateWhatsAppCta();
+    });
+  }
+
+  if (clientNameInput) {
+    clientNameInput.addEventListener("input", () => {
+      state.clientName = clientNameInput.value.trim();
+      if (state.clientName && clientNameError) {
+        clientNameError.classList.add("hidden");
+        clientNameInput.classList.remove("border-amber-500", "focus:border-amber-400");
+      }
+      updateWhatsAppCta();
     });
   }
 
